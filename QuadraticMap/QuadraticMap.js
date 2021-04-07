@@ -4,12 +4,15 @@ let NPIXELS = 500
 let FRAMESPER = 10
 
 let animate = false
+let colored = false
+let colorcycle
 
 let parameters
 let x = 0.1
 let y = 0.1
 let a
 let b
+let pixid = 0
 
 function check_parameters(str) {
     let regex = new RegExp('^[A-Ya-y]{12}$')
@@ -77,6 +80,8 @@ function setup() {
     createCanvas(NPIXELS, NPIXELS);
     background(220)
     frameRate(100)
+    strokeWeight(1)
+    colorMode(HSB, 255)
     noLoop()
     generate()
 }
@@ -91,6 +96,12 @@ function draw() {
 
     let xy
     for (var ii = 0; ii < ITERATIONS; ii++) {
+        if (colored) {
+            stroke(pixid%255, 255, 255, 255*document.getElementById("palpha").value)
+        } else {
+            stroke(0, 0, 0, 255*document.getElementById("palpha").value)
+        }
+
         xy = quadratic_map(x, y, a, b)
         x = xy[0]
         y = xy[1]
@@ -99,6 +110,7 @@ function draw() {
         _x = xy[0]
         _y = xy[1]
         point(_x, _y)
+        pixid += 255/colorcycle
         if (animate && ii >= FRAMESPER) {
             break
         }
@@ -109,9 +121,8 @@ function generate() {
     background(220)
 
     animate = document.getElementById("animated").checked;
-
-    stroke(0, 255*document.getElementById("palpha").value)
-
+    colored = document.getElementById("colored").checked;
+    colorcycle = document.getElementById("colorcycle").value;
     parameters = document.getElementById("parameters").value;
     if (!check_parameters(parameters)) {
         console.log('invalid parameters', parameters)
