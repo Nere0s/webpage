@@ -118,6 +118,8 @@ function draw() {
 }
 
 function generate() {
+    NPIXELS = document.getElementById("npix").value;
+    resizeCanvas(NPIXELS, NPIXELS)
     background(220)
 
     animate = document.getElementById("animated").checked;

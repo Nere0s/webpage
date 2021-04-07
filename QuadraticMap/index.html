@@ -15,7 +15,7 @@
         <div>
             <p>
                 The quadratic map is a discrete chaotic system.
-                The two dimensional quadratic map is given by the follwoing equations:
+                The two dimensional quadratic map is given by the following equations:
             </p>
             <div>
                 <img src="https://latex.codecogs.com/svg.latex?x_{i&plus;1}&space;=&space;a_0&space;&plus;&space;a_1&space;\cdot&space;x&space;&plus;&space;a_0&space;\cdot&space;x^2&space;&plus;&space;a_3&space;\cdot&space;xy&space;&plus;&space;a_4&space;\cdot&space;y&space;&plus;&space;a_5&space;\cdot&space;y^2" title="x_{i+1} = a_0 + a_1 \cdot x + a_0 \cdot x^2 + a_3 \cdot xy + a_4 \cdot y + a_5 \cdot y^2" />
@@ -62,21 +62,27 @@
             to
             <input type="number" id="y_max" value="2", step="0.1" style="width:40px;">
         </div>
+        <br>
+        <div>
+            Pixel resolution:
+            <input type="number" id="npix" value="500", step="100" style="width:70px;">
+        </div>
         <h3>
             Setup presentation
         </h3>
         <div>
             Iterations:
             <input type="number" id="iterations" value="100000" step="10000" style="width:80px;">
-        </div>
-        <p>or</p>
-        <div>
+            <br>
+            or
+            <br>
             Animated:
             <input type="checkbox" id="animated">
             with
             <input type="number" id="iperframe" value="100" step="10" style="width:70px;">
             iterations per frame
         </div>
+        <br>
         <div>
             Pixel alpha:
             <input type="range" id="palpha" min="0" max="1" step="0.01" value="0.05">
