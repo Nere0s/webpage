@@ -13,13 +13,21 @@
         <hr>
         <h1>Quadratic Map</h1>
         <div>
+            <p>
+                The quadratic map is a discrete chaotic system.
+                The two dimensional quadratic map is given by the follwoing equations:
+            </p>
             <div>
                 <img src="https://latex.codecogs.com/svg.latex?x_{i&plus;1}&space;=&space;a_0&space;&plus;&space;a_1&space;\cdot&space;x&space;&plus;&space;a_0&space;\cdot&space;x^2&space;&plus;&space;a_3&space;\cdot&space;xy&space;&plus;&space;a_4&space;\cdot&space;y&space;&plus;&space;a_5&space;\cdot&space;y^2" title="x_{i+1} = a_0 + a_1 \cdot x + a_0 \cdot x^2 + a_3 \cdot xy + a_4 \cdot y + a_5 \cdot y^2" />
             </div>
             <div>
                 <img src="https://latex.codecogs.com/svg.latex?y_{i&plus;1}&space;=&space;b_0&space;&plus;&space;b_1&space;\cdot&space;x&space;&plus;&space;b_0&space;\cdot&space;x^2&space;&plus;&space;b_3&space;\cdot&space;xy&space;&plus;&space;b_4&space;\cdot&space;y&space;&plus;&space;b_5&space;\cdot&space;y^2" title="y_{i+1} = b_0 + b_1 \cdot x + b_0 \cdot x^2 + b_3 \cdot xy + b_4 \cdot y + b_5 \cdot y^2" />
             </div>
-
+            <p>
+                The parameters are generally given by a 12 character string.
+                Each character encodes a value from -1.2 to 1.2.
+                With 25 characters (a-y or A-Y) this results in a 0.1 resolution.
+            </p>
             <div>
                 <img src="https://latex.codecogs.com/svg.latex?a_i&space;=&space;-1.2&space;&plus;&space;0.1&space;\cdot&space;s_i" title="a_i = -1.2 + 0.1 \cdot s_i" />
             </div>
@@ -27,22 +35,30 @@
                 <img src="https://latex.codecogs.com/svg.latex?b_i&space;=&space;-1.2&space;&plus;&space;0.1&space;\cdot&space;s_{i&plus;6}" title="b_i = -1.2 + 0.1 \cdot s_{i+6}" />
             </div>
         </div>
+        <hr>
+        <p>
+            Setup a two dimensional quadratic map and generate it:
+        </p>
         <div class="">
-            parameters: <input type="text" id="parameters" value="SJAIYDNARXSV", size="12">
+            Enter parameters: <input type="text" id="parameters" value="QROARMUDTABX", size="12", pattern="[a-yA-Y]{12}">
         </div>
+        <p>
+            Setup canvas:
+        </p>
         <div>
             x from
-            <input type="number" id="x_min" value="-2", step="0.1" max="-0.1", style="width:40px;">
+            <input type="number" id="x_min" value="0", step="0.1" style="width:40px;">
             to
-            <input type="number" id="x_max" value="2", step="0.1", min="0.1", style="width:40px;">
+            <input type="number" id="x_max" value="1.1", step="0.1", style="width:40px;">
         </div>
         <div>
             y from
-            <input type="number" id="y_min" value="-2", step="0.1" max="-0.1", style="width:40px;">
+            <input type="number" id="y_min" value="-0.7", step="0.1" style="width:40px;">
             to
-            <input type="number" id="y_max" value="2", step="0.1", min="0.1", style="width:40px;">
+            <input type="number" id="y_max" value="2", step="0.1", style="width:40px;">
         </div>
-        <button onclick="draw_quadratic_map()">Draw</button>
+        <hr>
+        <button onclick="draw_quadratic_map()">Generate</button>
     </body>
 
 </html>

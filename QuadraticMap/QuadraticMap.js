@@ -2,7 +2,7 @@ let SPINUP = 100000
 let ITERATIONS = 100000
 let NPIXELS = 500
 
-let parameters = 'SJAIYDNARXSV'
+let parameters
 let x = 0.1
 let y = 0.1
 let a
@@ -61,7 +61,7 @@ function point_to_pixel(x, y, x_min, x_max, y_min, y_max, npix) {
 function setup() {
   createCanvas(NPIXELS, NPIXELS);
   background(220)
-  stroke(0, 255/4)
+  stroke(0, 127)
   draw_quadratic_map()
 }
 
