@@ -1,6 +1,7 @@
 let SPINUP = 100000
 let ITERATIONS = 100000
 let NPIXELS = 500
+let FRAMESPER = 10
 
 let animate = false
 
@@ -75,7 +76,6 @@ function point_to_pixel(x, y, x_min, x_max, y_min, y_max, npix) {
 function setup() {
     createCanvas(NPIXELS, NPIXELS);
     background(220)
-    stroke(0, 127)
     frameRate(100)
     noLoop()
     generate()
@@ -87,6 +87,8 @@ function draw() {
     let y_min = document.getElementById("y_min").value;
     let y_max = document.getElementById("y_max").value;
 
+    FRAMESPER = document.getElementById("iperframe").value;
+
     let xy
     for (var ii = 0; ii < ITERATIONS; ii++) {
         xy = quadratic_map(x, y, a, b)
@@ -97,7 +99,7 @@ function draw() {
         _x = xy[0]
         _y = xy[1]
         point(_x, _y)
-        if (animate) {
+        if (animate && ii >= FRAMESPER) {
             break
         }
     }
@@ -107,6 +109,8 @@ function generate() {
     background(220)
 
     animate = document.getElementById("animated").checked;
+
+    stroke(0, 255*document.getElementById("palpha").value)
 
     parameters = document.getElementById("parameters").value;
     if (!check_parameters(parameters)) {
