@@ -46,12 +46,14 @@ function quadratic_map(x, y, a, b) {
     return [new_x, new_y]
 }
 
-function point_to_pixel(x, y, min, max, npix) {
+function point_to_pixel(x, y, x_min, x_max, y_min, y_max, npix) {
     let px
     let py
 
-    px = floor((x - min) / (max - min) * npix)
-    py = floor((y - min) / (max - min) * npix)
+    px = floor((x - x_min) / (x_max - x_min) * npix)
+    py = floor((y - y_min) / (y_max - y_min) * npix)
+
+    py = NPIXELS - py
 
     return [px, py]
 }
@@ -89,8 +91,13 @@ function draw_quadratic_map() {
     let _x
     let _y
 
+    let x_min = document.getElementById("x_min").value;
+    let x_max = document.getElementById("x_max").value;
+    let y_min = document.getElementById("y_min").value;
+    let y_max = document.getElementById("y_max").value;
+
     for (var ii = 0; ii < ITERATIONS; ii++) {
-        let xy = point_to_pixel(x, y, -2, 2, NPIXELS)
+        let xy = point_to_pixel(x, y, x_min, x_max, y_min, y_max, NPIXELS)
         _x = xy[0]
         _y = xy[1]
         point(_x, _y)

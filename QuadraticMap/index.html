@@ -27,7 +27,21 @@
                 <img src="https://latex.codecogs.com/svg.latex?b_i&space;=&space;-1.2&space;&plus;&space;0.1&space;\cdot&space;s_{i&plus;6}" title="b_i = -1.2 + 0.1 \cdot s_{i+6}" />
             </div>
         </div>
-        <input type="text" id="parameters" value="SJAIYDNARXSV">
+        <div class="">
+            parameters: <input type="text" id="parameters" value="SJAIYDNARXSV", size="12">
+        </div>
+        <div>
+            x from
+            <input type="number" id="x_min" value="-2", step="0.1" max="-0.1", style="width:40px;">
+            to
+            <input type="number" id="x_max" value="2", step="0.1", min="0.1", style="width:40px;">
+        </div>
+        <div>
+            y from
+            <input type="number" id="y_min" value="-2", step="0.1" max="-0.1", style="width:40px;">
+            to
+            <input type="number" id="y_max" value="2", step="0.1", min="0.1", style="width:40px;">
+        </div>
         <button onclick="draw_quadratic_map()">Draw</button>
     </body>
 
