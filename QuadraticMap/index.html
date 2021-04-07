@@ -44,7 +44,8 @@
             Setup a two dimensional quadratic map and generate it:
         </p>
         <div class="">
-            Enter parameters: <input type="text" id="parameters" value="QROARMUDTABX", size="12", pattern="[a-yA-Y]{12}">
+            Enter parameters:
+            <input type="text" id="parameters" value="QROARMUDTABX", size="12", pattern="[a-yA-Y]{12}">
         </div>
         <p>
             Setup canvas:
@@ -59,10 +60,16 @@
             y from
             <input type="number" id="y_min" value="-0.7", step="0.1" style="width:40px;">
             to
-            <input type="number" id="y_max" value="2", step="0.1", style="width:40px;">
+            <input type="number" id="y_max" value="2", step="0.1" style="width:40px;">
+        </div>
+        <div>
+            Iterations:
+            <input type="number" id="iterations" value="100000" step="10000" style="width:80px;">
+            Or animated:
+            <input type="checkbox" id="animated">
         </div>
         <hr>
-        <button onclick="draw_quadratic_map()">Generate</button>
+        <button onclick="generate()">Generate</button>
     </body>
 
 </html>

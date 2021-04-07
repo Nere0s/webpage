@@ -2,6 +2,8 @@ let SPINUP = 100000
 let ITERATIONS = 100000
 let NPIXELS = 500
 
+let animate = false
+
 let parameters
 let x = 0.1
 let y = 0.1
@@ -46,6 +48,18 @@ function quadratic_map(x, y, a, b) {
     return [new_x, new_y]
 }
 
+function spinup_quadratic_map(x, y, a, b, iterations) {
+    let xy
+
+    for (var ii = 0; ii < iterations; ii++) {
+        xy = quadratic_map(x, y, a, b)
+        x = xy[0]
+        y = xy[1]
+    }
+
+    return [x, y]
+}
+
 function point_to_pixel(x, y, x_min, x_max, y_min, y_max, npix) {
     let px
     let py
@@ -59,51 +73,61 @@ function point_to_pixel(x, y, x_min, x_max, y_min, y_max, npix) {
 }
 
 function setup() {
-  createCanvas(NPIXELS, NPIXELS);
-  background(220)
-  stroke(0, 127)
-  draw_quadratic_map()
+    createCanvas(NPIXELS, NPIXELS);
+    background(220)
+    stroke(0, 127)
+    frameRate(100)
+    noLoop()
+    generate()
 }
 
-function draw_quadratic_map() {
-    background(220)
-
-    parameters = document.getElementById("parameters").value;
-    console.log('trying to draw with parameters', parameters)
-
-    if (!check_parameters(parameters)) {
-        console.log('invalid parameters!')
-    }
-
-    x = 0
-    y = 0
-
-    params = string_to_params(parameters)
-    a = params[0]
-    b = params[1]
-
-    for (var ii = 0; ii < SPINUP; ii++) {
-        let xy = quadratic_map(x, y, a, b)
-        x = xy[0]
-        y = xy[1]
-    }
-
-    let _x
-    let _y
-
+function draw() {
     let x_min = document.getElementById("x_min").value;
     let x_max = document.getElementById("x_max").value;
     let y_min = document.getElementById("y_min").value;
     let y_max = document.getElementById("y_max").value;
 
+    let xy
     for (var ii = 0; ii < ITERATIONS; ii++) {
-        let xy = point_to_pixel(x, y, x_min, x_max, y_min, y_max, NPIXELS)
+        xy = quadratic_map(x, y, a, b)
+        x = xy[0]
+        y = xy[1]
+
+        xy = point_to_pixel(x, y, x_min, x_max, y_min, y_max, NPIXELS)
         _x = xy[0]
         _y = xy[1]
         point(_x, _y)
+        if (animate) {
+            break
+        }
+    }
+}
 
-        let newp = quadratic_map(x, y, a, b)
-        x = newp[0]
-        y = newp[1]
+function generate() {
+    background(220)
+
+    animate = document.getElementById("animated").checked;
+
+    parameters = document.getElementById("parameters").value;
+    if (!check_parameters(parameters)) {
+        console.log('invalid parameters', parameters)
+    }
+
+    let ab = string_to_params(parameters)
+    a = ab[0]
+    b = ab[1]
+
+    x = 0.1
+    y = 0.1
+    let xy
+    xy = spinup_quadratic_map(x, y, a, b, SPINUP)
+    x = xy[0]
+    y = xy[0]
+
+    if (animate) {
+        loop()
+    } else {
+        noLoop()
+        redraw()
     }
 }
