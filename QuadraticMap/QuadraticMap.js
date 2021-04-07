@@ -2,7 +2,7 @@ let SPINUP = 100000
 let ITERATIONS = 100000
 let NPIXELS = 500
 
-let parameters = 'EKMJGTPZJFMU'
+let parameters = 'SJAIYDNARXSV'
 let x = 0.1
 let y = 0.1
 let a
@@ -58,28 +58,45 @@ function point_to_pixel(x, y, min, max, npix) {
 
 function setup() {
   createCanvas(NPIXELS, NPIXELS);
-  background(220);
-  [a, b] = string_to_params(parameters)
-
-  for (var ii = 0; ii < SPINUP; ii++) {
-      [x, y] = quadratic_map(x, y, a, b)
-  }
-
+  background(220)
   stroke(0, 255/4)
-
-  let _x
-  let _y
-  for (var ii = 0; ii < ITERATIONS; ii++) {
-      [_x, _y] = point_to_pixel(x, y, -1, 1, NPIXELS)
-      point(_x, _y)
-
-      let newp = quadratic_map(x, y, a, b)
-      x = newp[0]
-      y = newp[1]
-  }
-
+  draw_quadratic_map()
 }
 
-function draw() {
+function draw_quadratic_map() {
+    background(220)
 
+    parameters = document.getElementById("parameters").value;
+    console.log('trying to draw with parameters', parameters)
+
+    if (!check_parameters(parameters)) {
+        console.log('invalid parameters!')
+    }
+
+    x = 0
+    y = 0
+
+    params = string_to_params(parameters)
+    a = params[0]
+    b = params[1]
+
+    for (var ii = 0; ii < SPINUP; ii++) {
+        let xy = quadratic_map(x, y, a, b)
+        x = xy[0]
+        y = xy[1]
+    }
+
+    let _x
+    let _y
+
+    for (var ii = 0; ii < ITERATIONS; ii++) {
+        let xy = point_to_pixel(x, y, -2, 2, NPIXELS)
+        _x = xy[0]
+        _y = xy[1]
+        point(_x, _y)
+
+        let newp = quadratic_map(x, y, a, b)
+        x = newp[0]
+        y = newp[1]
+    }
 }
