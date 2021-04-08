@@ -29,15 +29,26 @@ function setup() {
 
 function draw() {
   background(220)
+
+  x_min = parseFloat(document.getElementById("x_min").value);
+  x_max = parseFloat(document.getElementById("x_max").value);
+
+  y_min = parseFloat(document.getElementById("y_min").value);
+  y_max = parseFloat(document.getElementById("y_max").value);
+
   for (var ix = 0; ix < NPIXELS; ix++) {
       let y = y0
       let x = x_min + (x_max - x_min)*ix/NPIXELS
-      console.log(x)
+
       y = spinup_logistic_map(y, x, SPINUP)
 
       for (var ii = 0; ii < ITERATIONS; ii++) {
-          point(ix, y*NPIXELS)
-          y = logistic_map(1-y, x)
+          let py = (y-y_min)/(y_max-y_min)
+          py = 1-py
+          py = NPIXELS
+
+          point(ix, py)
+          y = logistic_map(y, x)
       }
   }
 }
