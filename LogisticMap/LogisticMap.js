@@ -45,7 +45,7 @@ function draw() {
       for (var ii = 0; ii < ITERATIONS; ii++) {
           let py = (y-y_min)/(y_max-y_min)
           py = 1-py
-          py = NPIXELS
+          py = py*NPIXELS
 
           point(ix, py)
           y = logistic_map(y, x)
