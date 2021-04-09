@@ -4,6 +4,16 @@ function set_background(color) {
    document.body.style.background = color;
 }
 
+function zero_pad_number(d, n) {
+    s = d.toString();
+
+    while (s.length < n) {
+        s = "0".concat(s)
+    }
+
+    return s
+}
+
 function get_day_fraction(d) {
     let h = d.getHours()
     let m = d.getMinutes()
@@ -26,6 +36,10 @@ function set_clock_text(d) {
     let h = d.getHours()
     let m = d.getMinutes()
     let s = d.getSeconds()
+
+    h = zero_pad_number(h, 2)
+    m = zero_pad_number(m, 2)
+    s = zero_pad_number(s, 2)
 
     document.getElementById("clock").textContent=`${h}:${m}:${s}`;
 }
