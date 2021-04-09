@@ -29,6 +29,7 @@ function get_day_fraction(d) {
 
 function set_background_to_time(d) {
     let f = get_day_fraction(d)
+    f += .5
     set_background(`hsl(${f*360}, 100%, 64%)`)
 }
 
