@@ -2,15 +2,19 @@
 <html lang="en">
     <head>
       <title>Color Clock</title>
+      <link rel="stylesheet" href="style.css">
       <script src="Clock.js"></script>
     </head>
     <body>
         <div id="interface">
             <a href="/">home</a>
             <hr>
-            <span id="clock">time goes here</span>
             <br>
-            <span id="fracClock">fraction goes here</span>
+            <div id="clock">
+                <span class="clockElement" id="clockTime">time goes here</span>
+                <br>
+                <span class="clockElement" id="fracClock">fraction goes here</span>
+            </div>
         </div>
         <button onclick="toggle_show()" id="button" style="background-color: Transparent">hide</button>
     </body>

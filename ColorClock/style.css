@@ -1,0 +1,12 @@
+.clockElement {
+  font-size: xx-large;
+  font: Monospace;
+  display: table;
+  margin: 0 auto;
+}
+
+#button {
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+}

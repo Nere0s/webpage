@@ -42,7 +42,7 @@ function set_clock_text(d) {
     m = zero_pad_number(m, 2)
     s = zero_pad_number(s, 2)
 
-    document.getElementById("clock").textContent=`${h}:${m}:${s}`;
+    document.getElementById("clockTime").textContent=`${h}:${m}:${s}`;
 }
 
 function set_fraction_text(d) {
