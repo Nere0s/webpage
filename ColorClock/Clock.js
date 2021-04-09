@@ -58,3 +58,16 @@ function update() {
     set_clock_text(d)
     set_fraction_text(d)
 }
+
+function toggle_show() {
+    var x = document.getElementById("interface")
+    var b = document.getElementById("button")
+
+    if (x.style.display === "none") {
+        x.style.display = "block"
+        b.textContent = 'hide'
+    } else {
+        x.style.display = "none"
+        b.textContent = 'show'
+    }
+}
